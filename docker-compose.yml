@@ -1,0 +1,10 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres:12.4-alpine
+    environment:
+      POSTGRES_DB: "postgres"
+      POSTGRES_PASSWORD: "${DB_PASS}"
+      POSTGRES_USER: "${DB_USER}"
+    ports:
+      - 5432:5432
