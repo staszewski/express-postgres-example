@@ -8,3 +8,13 @@ export const postSongAction = async (request: Request, response: Response) => {
   await songRepository.save(newSong)
   response.send(newSong)
 }
+
+export const getSongById = async (request: Request, response: Response) => {
+  const songRepository = getManager().getRepository(Song)
+  try {
+    response.send(await songRepository.findOneOrFail({ where: { id: request.params.id } }))
+  } catch (error) {
+    response.status(404)
+    response.send({ok: false, message: "Not Found"})
+  }
+}

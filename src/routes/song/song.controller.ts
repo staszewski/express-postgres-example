@@ -1,14 +1,14 @@
 import express from "express"
-import { postSongAction } from "./song.service"
+import { postSongAction, getSongById } from "./song.service"
 
 const router = express.Router()
 
-router.get("/", (req, res) => {
-  res.json({ status: "ok" })
-})
-
 router.post("/", async (req, res) => {
   await postSongAction(req, res)
+})
+
+router.get("/:id", async (req, res) => {
+  await getSongById(req, res) 
 })
 
 export default router
